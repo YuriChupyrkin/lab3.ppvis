@@ -8,13 +8,15 @@ public class MenuBar extends JMenuBar{
 
 	private MainFrame mainFrame;
 	JMenu fileMenu;
-	JMenu actionMenu;
+	JMenu helpMenu;
+	JMenuItem about;
 	
 	
 	private enum fileMenuItems{
 		load("load", "LOAD"),
 		save("save", "SAVE"),
-		setting("setting", "SETTING");
+		setting("setting", "SETTING"),
+		close("close", "CLOSE");
 		
 		private final String NAME;
 		private final String COMAND;
@@ -34,9 +36,17 @@ public class MenuBar extends JMenuBar{
 		fileMenu.setName("fileMenu");
 		fileMenu.setText((String)resourceBundle.getObject(fileMenu.getName()));
 		
-		actionMenu = new JMenu();
-		actionMenu.setName("actionMenu");
-		actionMenu.setText((String)resourceBundle.getObject(actionMenu.getName()));
+		helpMenu = new JMenu();
+		helpMenu.setName("helpMenu");
+		helpMenu.setText((String)resourceBundle.getObject(helpMenu.getName()));
+		
+		about = new JMenuItem();
+		about.setName("about");
+		about.setText((String)resourceBundle.getObject(about.getName()));
+		about.setActionCommand("ABOUT");
+		about.addActionListener(mainFrame.getMenuListener());
+		mainFrame.itemsList.add(about);		
+		helpMenu.add(about);
 		
 		for(fileMenuItems item: fileMenuItems.values()){
 			JMenuItem menuItem = new JMenuItem();
@@ -47,13 +57,11 @@ public class MenuBar extends JMenuBar{
 			menuItem.addActionListener(mainFrame.getMenuListener());
 			fileMenu.add(menuItem);
 		}
-		
-		
-		
+	
 		mainFrame.menuList.add(fileMenu);	 
-		mainFrame.menuList.add(actionMenu);
+		mainFrame.menuList.add(helpMenu);
 		this.add(fileMenu);
-		this.add(actionMenu);
+		this.add(helpMenu);
 	}
 
 	

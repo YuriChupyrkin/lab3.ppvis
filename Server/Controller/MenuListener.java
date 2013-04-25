@@ -3,6 +3,7 @@ package Server.Controller;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 
 import Server.View.MainFrame;
 
@@ -23,9 +24,20 @@ public class MenuListener extends AbstractAction{
 		if(command.equals("LOAD")){
 			System.out.println("LOAD!!!");
 		}
+		if
+		(command.equals("SAVE")){
+			System.out.println("SAVE!!!");
+		}
 		else if(command.equals("SETTING")){
-			mainFrame.getAdapter().getData().changeLang("ru");
 			mainFrame.getSettingDialog().runDialog();
+		}
+		if(command.equals("CLOSE")){
+			System.exit(1);
+		}
+		if(command.equals("ABOUT")){
+			JOptionPane.showMessageDialog(mainFrame, "Лаб №3 по ППвИС\n" +
+					"выполнил: Чупыркин Ю.А." );
+
 		}
 	}
 

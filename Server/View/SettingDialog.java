@@ -2,12 +2,15 @@ package Server.View;
 
 import javax.swing.*;
 
+import Server.Controller.SettingDialogListener;
+
 public class SettingDialog extends JDialog{
 
 	private MainFrame mainFrame;
 	public JComboBox langComboBox;
 	private JLabel langLabel;
 	private JButton butOk;
+	private SettingDialogListener settingDialogListener;
 	
 	public SettingDialog(MainFrame frame){
 		this.mainFrame = frame;
@@ -18,7 +21,6 @@ public class SettingDialog extends JDialog{
 		this.setLayout(null);
 		
 		langComboBox = new JComboBox();
-		langComboBox.setActionCommand("langComboBox");
 		langComboBox.setEditable(false);
 		langComboBox.addItem("English");
 		langComboBox.addItem("Русский");
@@ -30,10 +32,12 @@ public class SettingDialog extends JDialog{
 		butOk = new JButton("OK");
 		butOk.setBounds(100, 100, 100, 50);
 		
-		
 		this.add(langComboBox);		
 		this.add(langLabel);
 		this.add(butOk);
+		
+		settingDialogListener = new SettingDialogListener(mainFrame);
+		butOk.addActionListener(settingDialogListener);
 	}
 	
 	public void runDialog(){
