@@ -22,19 +22,21 @@ public class MenuListener extends AbstractAction{
 		command = arg0.getActionCommand();
 		
 		if(command.equals("LOAD")){
-			System.out.println("LOAD!!!");
+			mainFrame.getAdapter().getLoaderSaver().saveDialog("load");
 		}
-		if
-		(command.equals("SAVE")){
-			System.out.println("SAVE!!!");
+		else if	(command.equals("NEW")){
+			mainFrame.getAdapter().getLoaderSaver().saveDialog("new");
+		}
+		else if	(command.equals("SAVE")){
+			mainFrame.getAdapter().getLoaderSaver().saveAs();
 		}
 		else if(command.equals("SETTING")){
 			mainFrame.getSettingDialog().runDialog();
 		}
-		if(command.equals("CLOSE")){
-			System.exit(1);
+		else if(command.equals("CLOSE")){
+			mainFrame.getAdapter().getLoaderSaver().saveDialog("close");
 		}
-		if(command.equals("ABOUT")){
+		else if(command.equals("ABOUT")){
 			JOptionPane.showMessageDialog(mainFrame, "Лаб №3 по ППвИС\n" +
 					"выполнил: Чупыркин Ю.А." );
 

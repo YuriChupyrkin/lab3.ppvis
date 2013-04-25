@@ -3,13 +3,14 @@ package Server.Controller;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.JComboBox;
 
+import Server.Model.Data;
 import Server.View.MainFrame;
 
 public class SettingDialogListener extends AbstractAction{
 
 	private MainFrame mainFrame;
-	private String command;
 	
 	public SettingDialogListener(MainFrame mainFrame) {
 		super();
@@ -18,12 +19,14 @@ public class SettingDialogListener extends AbstractAction{
 
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
-		command = arg0.getActionCommand();
-		if((String)mainFrame.getSettingDialog().langComboBox.getSelectedItem() == "English"){
-			mainFrame.getAdapter().getData().changeLang("eng");
+		JComboBox langComboBox = mainFrame.getSettingDialog().langComboBox;
+		Data data = mainFrame.getAdapter().getData();
+		
+		if((String)langComboBox.getSelectedItem() == "English"){
+			data.changeLang("eng");
 		}
-		else if((String)mainFrame.getSettingDialog().langComboBox.getSelectedItem() == "Русский"){
-			mainFrame.getAdapter().getData().changeLang("ru");
+		else if((String)langComboBox.getSelectedItem() == "Русский"){
+			data.changeLang("ru");
 		}
 		mainFrame.getSettingDialog().setVisible(false);
 	}

@@ -13,6 +13,7 @@ public class MenuBar extends JMenuBar{
 	
 	
 	private enum fileMenuItems{
+		New("new", "NEW"),
 		load("load", "LOAD"),
 		save("save", "SAVE"),
 		setting("setting", "SETTING"),

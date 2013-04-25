@@ -16,9 +16,11 @@ public class MainFrame extends JFrame{
 	private Adapter adapter;
 	public List<JMenuItem> itemsList;
 	public List<JMenu> menuList;
+	public List<JButton> buttonList;
 	private MenuBar menuBar;
 	private Server.Controller.MenuListener menuListener;
 	private SettingDialog settingDialog;
+	private MainPanel mainPanel;
 	
 	public MainFrame() throws HeadlessException {
 		super();
@@ -28,14 +30,17 @@ public class MainFrame extends JFrame{
 		
 		itemsList = new ArrayList<JMenuItem>();
 		menuList = new ArrayList<JMenu>();
+		buttonList = new ArrayList<JButton>();
 		
 		adapter = new Adapter(this);
 		menuListener = new Server.Controller.MenuListener(this);
 		settingDialog = new SettingDialog(this);
 		
 		menuBar = new MenuBar(this);
-		this.setJMenuBar(menuBar);
+		mainPanel = new MainPanel(this);
 		
+		this.setJMenuBar(menuBar);
+		this.add(mainPanel);	
 	}
 	
 	public void runServer(){
@@ -56,4 +61,7 @@ public class MainFrame extends JFrame{
 		return settingDialog;
 	}
 	
+	public MainPanel getMainPanel() {
+		return mainPanel;
+	}
 }

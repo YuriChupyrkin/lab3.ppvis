@@ -3,6 +3,7 @@ package Server.Model;
 import java.awt.Component;
 import java.util.*;
 
+import javax.swing.JButton;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 
@@ -12,18 +13,32 @@ public class Data {
 
 	private Adapter adapter;
 	private ResourceBundle resourceBundle;
+	public PagingModel pagingModel;
+	public List<Student>studList;
 	
 	public Data(Adapter adapter) {
 		super();
 		this.adapter = adapter;
 		
+		studList = new ArrayList<Student>();
+		
+		for(int i = 0; i < 504; i++){
+			studList.add(new Student("" + i, "2", "3", "4", "w", "w", "w", "w"));
+		}
+		
 		resourceBundle = ResourceBundle.getBundle("lang", new Locale("en","EN"));
+		pagingModel = new PagingModel(studList);
 	}
 
+	
+	
+	
+	
 	
 	public void changeLang(String lang){
 		List<JMenuItem>itemsList = adapter.getMainFrame().itemsList;
 		List<JMenu>menuList = adapter.getMainFrame().menuList;
+		List<JButton>buttonList = adapter.getMainFrame().buttonList;
 		
 		if(lang.equals("eng")){
 			resourceBundle = ResourceBundle.getBundle("lang", new Locale("en","EN"));			
@@ -39,9 +54,14 @@ public class Data {
 		for(JMenu item: menuList){
 			item.setText((String)resourceBundle.getObject(item.getName()));
 		}
+		for(JButton item: buttonList){
+			item.setText((String)resourceBundle.getObject(item.getName()));
+		}
 		
 		adapter.getMainFrame().revalidate();
 		adapter.getMainFrame().repaint();
+		adapter.getMainFrame().getMainPanel().revalidate();
+		adapter.getMainFrame().getMainPanel().repaint();
 	}
 	
 	
@@ -52,4 +72,9 @@ public class Data {
 	public ResourceBundle getResourceBundle() {
 		return resourceBundle;
 	}
+	
+	public PagingModel getPagingModel() {
+		return pagingModel;
+	}
+
 }
