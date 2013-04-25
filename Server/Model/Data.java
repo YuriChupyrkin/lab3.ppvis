@@ -13,6 +13,7 @@ public class Data {
 
 	
 	
+	
 	public Adapter getAdapter() {
 		return adapter;
 	}
