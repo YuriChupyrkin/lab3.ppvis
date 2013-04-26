@@ -11,6 +11,7 @@ import javax.swing.JTable;
 
 import Client.Model.Data;
 import Client.Model.Student;
+import Client.View.ConnectDialog;
 
 public class Refresh {
 
@@ -54,6 +55,8 @@ public class Refresh {
         }
         catch(Exception e){
         	JOptionPane.showMessageDialog(data.getAdapter().getMainFrame(),"Ошибка соединения");
+        	ConnectDialog connectDialog = new ConnectDialog(data.getAdapter().getMainFrame());
+        	connectDialog.runConnectDialog();
         } 
 	}
 	

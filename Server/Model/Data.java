@@ -27,7 +27,7 @@ public class Data {
 		searchList = new ArrayList<Student>();
 		
 		serverIp = "localhost";
-		/*for(int i = 0; i < 504; i++){
+	/*	for(int i = 0; i < 104; i++){
 			studList.add(new Student("" + i, "2", "3", "4", "w", "w", "w", "w"));
 		} */
 		

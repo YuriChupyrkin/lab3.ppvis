@@ -24,6 +24,7 @@ public class MainFrame extends JFrame{
 	private MainPanel mainPanel;
 	private ActionItemsListener actionItemsListener;
 	private String serverIp;
+	private WindowListener windowListener;
 	
 	public MainFrame(String ip) throws HeadlessException {
 		super();
@@ -48,10 +49,12 @@ public class MainFrame extends JFrame{
 		
 		this.setJMenuBar(menuBar);
 		this.add(mainPanel);	
+		windowListener = new WindowListener(adapter);
+		this.addWindowListener(windowListener);
 	}
 	
 	public void runServer(){
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		this.setVisible(true);
 		runSampleServer(serverIp);
 	}
@@ -61,9 +64,6 @@ public class MainFrame extends JFrame{
 	{
 		 try
 	        {
-	            // привинтить сокет на локалхост, порт 3128
-	           /* ServerSocket server = new ServerSocket(3128, 0,
-	                    InetAddress.getByName("localhost")); */
 	            ServerSocket server = new ServerSocket(3128, 0,
 	                    InetAddress.getByName(ip));  
 
@@ -77,7 +77,7 @@ public class MainFrame extends JFrame{
 	        }
 	        catch(Exception e){
 	        	System.out.println("init error: "+e);
-	        } // вывод исключений
+	        } 
 	}
 	
 	

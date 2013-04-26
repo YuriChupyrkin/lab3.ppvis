@@ -70,6 +70,9 @@ public class MenuBar extends JMenuBar{
 		for(fileMenuItems item: fileMenuItems.values()){
 			JMenuItem menuItem = new JMenuItem();
 			menuItem.setName(item.NAME);
+			if(item.NAME.equals("setting") || item.NAME.equals("close")){
+				fileMenu.addSeparator();
+			}
 			menuItem.setText(menuItem.getName());
 			menuItem.setActionCommand(item.COMAND);
 			mainFrame.itemsList.add(menuItem);
