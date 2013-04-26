@@ -96,7 +96,7 @@ public class MainPanel extends JPanel{
 			button.setText(button.getName());
 			button.setBounds(but.posX, but.posY, but.HEIGHT, but.WIDTH);
 			button.setActionCommand(but.COMAND);
-			//button.addActionListener(mainFrame.getActionItemsListener());
+			button.addActionListener(mainFrame.getActionItemsListener());
 			mainFrame.buttonList.add(button);
 			this.add(button);
 		}
