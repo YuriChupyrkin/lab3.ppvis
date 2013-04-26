@@ -125,7 +125,6 @@ public class SearchDialog extends JDialog{
 		this.setVisible(true);
 	}
 	
-	//////////////////////////  Getters  //////////////////////
 	public SearchDialogListener getSearchDialogListener() {
 		return searchDialogListener;
 	}

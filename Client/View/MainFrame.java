@@ -50,6 +50,8 @@ public class MainFrame extends JFrame{
 	public void run(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		ConnectDialog connectDialog = new ConnectDialog(this);
+		connectDialog.runConnectDialog();
 	}
 	
 	

@@ -6,6 +6,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 import Client.Model.Data;
@@ -49,9 +50,10 @@ public class Refresh {
            	JTable table = data.getAdapter().getMainFrame().getMainPanel().getTable();
 			table.revalidate();
 			table.repaint();
+			JOptionPane.showMessageDialog(data.getAdapter().getMainFrame(),"Данные обновлены");
         }
         catch(Exception e){
-        System.out.println("Client init error: "+e);
+        	JOptionPane.showMessageDialog(data.getAdapter().getMainFrame(),"Ошибка соединения");
         } 
 	}
 	

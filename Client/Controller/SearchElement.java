@@ -11,6 +11,7 @@ import javax.swing.JTable;
 
 import Client.Model.Data;
 import Client.Model.Student;
+import Client.View.MainFrame;
 import Client.View.SearchDialog;
 import Client.View.RemoveDialog.ComboBoxItems;
 
@@ -22,14 +23,18 @@ public class SearchElement {
 	public SearchElement(SearchDialogListener searchDialogListener) {
 		super();
 		this.searchDialogListener = searchDialogListener;
+		this.searchDialog = searchDialogListener.getSearchDialog();
 
 	}
 	
 	
 	
 	public void searchEl(){
+		
+		MainFrame mainFrame = searchDialog.getMainFrame();
+		Adapter adapter = mainFrame.getAdapter();
+		Data data = adapter.getData();
 		try{
-			Data data = getData();
             Socket s = new Socket(data.getIp(), 3128);
             
             List<String>studStrList = new ArrayList<String>();
@@ -70,10 +75,5 @@ public class SearchElement {
 		        System.out.println("Client init error: "+e);
 		} 
 	
-	}
-	
-	
-	public Data getData(){
-		return searchDialogListener.getSearchDialog().getMainFrame().getAdapter().getData();
 	}
 }

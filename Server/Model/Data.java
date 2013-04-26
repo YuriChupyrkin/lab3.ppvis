@@ -17,6 +17,7 @@ public class Data {
 	public PagingModel searchPagingModel;
 	public List<Student>studList;
 	public List<Student> searchList;
+	private String serverIp;
 	
 	public Data(Adapter adapter) {
 		super();
@@ -25,6 +26,7 @@ public class Data {
 		studList = new ArrayList<Student>();
 		searchList = new ArrayList<Student>();
 		
+		serverIp = "localhost";
 		/*for(int i = 0; i < 504; i++){
 			studList.add(new Student("" + i, "2", "3", "4", "w", "w", "w", "w"));
 		} */
@@ -83,6 +85,14 @@ public class Data {
 	
 	public PagingModel getSearchPagingModel() {
 		return searchPagingModel;
+	}
+	
+	public String getServerIp() {
+		return serverIp;
+	}
+	
+	public void setServerIp(String serverIp) {
+		this.serverIp = serverIp;
 	}
 
 }

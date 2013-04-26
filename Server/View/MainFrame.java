@@ -23,9 +23,12 @@ public class MainFrame extends JFrame{
 	private SettingDialog settingDialog;
 	private MainPanel mainPanel;
 	private ActionItemsListener actionItemsListener;
+	private String serverIp;
 	
-	public MainFrame() throws HeadlessException {
+	public MainFrame(String ip) throws HeadlessException {
 		super();
+		
+		this.serverIp = ip;
 		this.setTitle("Server");
 		this.setSize(800, 600);
 		this.setLocation(70, 70);
@@ -35,6 +38,7 @@ public class MainFrame extends JFrame{
 		buttonList = new ArrayList<JButton>();
 		
 		adapter = new Adapter(this);
+		adapter.getData().setServerIp(ip);
 		menuListener = new Server.Controller.MenuListener(this);
 		settingDialog = new SettingDialog(this);
 		actionItemsListener = new ActionItemsListener(this);
@@ -49,11 +53,11 @@ public class MainFrame extends JFrame{
 	public void runServer(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
-		runSampleServer();
+		runSampleServer(serverIp);
 	}
 
 	
-	public void runSampleServer()
+	public void runSampleServer(String ip)
 	{
 		 try
 	        {
@@ -61,7 +65,7 @@ public class MainFrame extends JFrame{
 	           /* ServerSocket server = new ServerSocket(3128, 0,
 	                    InetAddress.getByName("localhost")); */
 	            ServerSocket server = new ServerSocket(3128, 0,
-	                    InetAddress.getByName("192.168.1.15"));  
+	                    InetAddress.getByName(ip));  
 
 	            // слушаем порт
 	            while(true)

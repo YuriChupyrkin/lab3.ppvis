@@ -25,7 +25,8 @@ public class Data {
 		super();
 		this.adapter = adapter;
 		
-		ip = "192.168.1.15";
+		//ip = "192.168.1.15";
+		ip = "localhost";
 		
 		studList = new ArrayList<Student>();
 		searchList = new ArrayList<Student>();
@@ -87,5 +88,9 @@ public class Data {
 	
 	public String getIp() {
 		return ip;
+	}
+	
+	public void setIp(String ip) {
+		this.ip = ip;
 	}
 }
