@@ -2,13 +2,14 @@ package Server.View;
 
 import java.awt.Component;
 import java.awt.HeadlessException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.*;
 import javax.swing.event.MenuListener;
 
-import Server.Controller.Adapter;
 import Server.Controller.*;
 
 public class MainFrame extends JFrame{
@@ -48,8 +49,31 @@ public class MainFrame extends JFrame{
 	public void runServer(){
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
+		runSampleServer();
 	}
 
+	
+	public void runSampleServer()
+	{
+		 try
+	        {
+	            // привинтить сокет на локалхост, порт 3128
+	            ServerSocket server = new ServerSocket(3128, 0,
+	                    InetAddress.getByName("localhost"));  
+
+	            // слушаем порт
+	            while(true)
+	            {
+	                // ждём нового подключения, после чего запускаем обработку клиента
+	                // в новый вычислительный поток и увеличиваем счётчик на единичку
+	                new SampleServer(this, server.accept());
+	            }
+	        }
+	        catch(Exception e){
+	        	System.out.println("init error: "+e);
+	        } // вывод исключений
+	}
+	
 	
 	public Adapter getAdapter() {
 		return adapter;
