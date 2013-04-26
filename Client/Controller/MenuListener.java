@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.AbstractAction;
 import javax.swing.JOptionPane;
 
+import Client.View.ConnectDialog;
 import Client.View.MainFrame;
 
 
@@ -24,15 +25,14 @@ public class MenuListener extends AbstractAction{
 		
 
 		if	(command.equals("CONNECT")){
-			//mainFrame.getAdapter().getLoaderSaver().saveDialog("new");
-			System.out.println("CONNECT");
+			ConnectDialog connectDialog = new ConnectDialog(mainFrame);
+			connectDialog.runConnectDialog();
 		}
 		else if(command.equals("SETTING")){
 			mainFrame.getSettingDialog().runDialog();
 		}
 		else if(command.equals("CLOSE")){
-			//mainFrame.getAdapter().getLoaderSaver().saveDialog("close");
-			System.out.println("CLOSE");
+			System.exit(1);
 		}
 		else if(command.equals("ABOUT")){
 			JOptionPane.showMessageDialog(mainFrame, "À‡· π3 ÔÓ œœ‚»—\n" +

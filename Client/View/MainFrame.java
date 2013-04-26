@@ -23,6 +23,7 @@ public class MainFrame extends JFrame{
 	private MenuListener menuListener;
 	private SettingDialog settingDialog;
 	private ActionItemsListener actionItemsListener;
+	private MainPanel mainPanel;
 	
 	public MainFrame() throws HeadlessException {
 		super();
@@ -39,8 +40,10 @@ public class MainFrame extends JFrame{
 		settingDialog = new SettingDialog(this);
 		actionItemsListener = new ActionItemsListener(this);
 		
+		mainPanel = new MainPanel(this);
 		menuBar = new MenuBar(this);
 		this.setJMenuBar(menuBar);
+		this.add(mainPanel);
 	}
 	
 	
@@ -65,6 +68,10 @@ public class MainFrame extends JFrame{
 	
 	public ActionItemsListener getActionItemsListener() {
 		return actionItemsListener;
+	}
+	
+	public MainPanel getMainPanel() {
+		return mainPanel;
 	}
 	
 }

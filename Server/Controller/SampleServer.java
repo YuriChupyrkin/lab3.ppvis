@@ -82,6 +82,8 @@ public class SampleServer extends Thread
     	data.pagingModel = new PagingModel(data.studList);
     	mainFrame.getMainPanel().getTable().revalidate();
     	mainFrame.getMainPanel().getTable().repaint();
+    	
+    	sendStudList();
     }
     
     private void sendStudList(){

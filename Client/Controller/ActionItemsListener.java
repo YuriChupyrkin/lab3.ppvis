@@ -4,14 +4,17 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
 
+import Client.View.AddDialog;
 import Client.View.MainFrame;
+import Client.View.RemoveDialog;
+import Client.View.SearchDialog;
 
 
 public class ActionItemsListener extends AbstractAction{
 
 	private MainFrame mainFrame;
 	private String comand;
-	//private AddDialog addDialog;
+	private AddDialog addDialog;
 	
 	public ActionItemsListener(MainFrame frame) {
 		super();
@@ -23,25 +26,23 @@ public class ActionItemsListener extends AbstractAction{
 		comand = e.getActionCommand();
 		
 		if(comand.equals("ADD")){
-			//addDialog = new AddDialog(mainFrame);
-			//addDialog.runAddDialog();
-			System.out.println("ADD");
+			addDialog = new AddDialog(mainFrame);
+			addDialog.runAddDialog();
 		}
 		else if(comand.equals("REMOVE")){
-			//RemoveDialog removeDialog = new RemoveDialog(mainFrame);
-			//removeDialog.runRemoveDialog(); 
-			System.out.println("REMOVE");
+			RemoveDialog removeDialog = new RemoveDialog(mainFrame);
+			removeDialog.runRemoveDialog();
 		}
 		else if(comand.equals("SEARCH")){
-			/*SearchDialog searchDialog = new SearchDialog(mainFrame);
+			SearchDialog searchDialog = new SearchDialog(mainFrame);
 			searchDialog.getMainFrame().getAdapter().getData().searchList.clear();
 			searchDialog.getTable().revalidate();
 			searchDialog.getTable().repaint();
-			searchDialog.runSearchDialog();  */
-			System.out.println("SEARCH");
+			searchDialog.runSearchDialog();  
 		}
 		else if(comand.equals("REFRESH")){
-			System.out.println("REFRESH");
+			Refresh refresh = new Refresh(mainFrame.getAdapter().getData());
+			refresh.refreshEl();
 		}
 		
 	}

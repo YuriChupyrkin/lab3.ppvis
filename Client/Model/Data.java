@@ -1,5 +1,6 @@
 package Client.Model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -14,12 +15,28 @@ public class Data {
 
 	private Adapter adapter;
 	private ResourceBundle resourceBundle;
+	public List<Student>studList;
+	public List<Student>searchList;
+	public PagingModel pagingModel;
+	public PagingModel searchPagingModel;
+	private String ip;
 	
 	public Data(Adapter adapter) {
 		super();
 		this.adapter = adapter;
+		
+		ip = "192.168.1.15";
+		
+		studList = new ArrayList<Student>();
+		searchList = new ArrayList<Student>();
+		
+		/*for(int i = 0; i < 204; i++){
+			studList.add(new Student("" + i, "2", "3", "4", "w", "w", "w", "w"));
+		} */
 				
 		resourceBundle = ResourceBundle.getBundle("lang", new Locale("en","EN"));
+		pagingModel = new PagingModel(studList);
+		searchPagingModel = new PagingModel(searchList);
 	}
 
 	
@@ -48,8 +65,8 @@ public class Data {
 		
 		adapter.getMainFrame().revalidate();
 		adapter.getMainFrame().repaint();
-		//adapter.getMainFrame().getMainPanel().revalidate();
-		//adapter.getMainFrame().getMainPanel().repaint();
+		adapter.getMainFrame().getMainPanel().revalidate();
+		adapter.getMainFrame().getMainPanel().repaint();
 	}
 	
 	public Adapter getAdapter() {
@@ -58,5 +75,17 @@ public class Data {
 	
 	public ResourceBundle getResourceBundle() {
 		return resourceBundle;
+	}
+	
+	public PagingModel getPagingModel() {
+		return pagingModel;
+	}
+	
+	public PagingModel getSearchPagingModel() {
+		return searchPagingModel;
+	}
+	
+	public String getIp() {
+		return ip;
 	}
 }
