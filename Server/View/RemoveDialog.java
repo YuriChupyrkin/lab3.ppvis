@@ -1,5 +1,7 @@
 package Server.View;
 
+import java.util.ResourceBundle;
+
 import javax.swing.*;
 
 import Server.Controller.RemoveDialogListener;
@@ -51,8 +53,12 @@ public class RemoveDialog extends JDialog{
 		item2Label = new JLabel("                    фамилия");
 		item1Text = new JTextField();
 		item2Text = new JTextField();
-		butRemove = new JButton("Remove");
+		butRemove = new JButton();
 		butRemove.setActionCommand("REMOVE");
+		butRemove.setName("remove");
+		ResourceBundle resourceBundle = mainFrame.getAdapter().getData().getResourceBundle();
+		butRemove.setText((String)resourceBundle.getObject(butRemove.getName()));
+		mainFrame.buttonList.add(butRemove);
 		
 		Box boxCondition = Box.createHorizontalBox();
 		boxCondition.add(mainLabel);

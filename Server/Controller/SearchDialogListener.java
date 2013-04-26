@@ -47,8 +47,7 @@ public class SearchDialogListener extends AbstractAction{
 		
 	}
 	
-	
-	///////////////////////  Getters  //////////////////////////////
+
 	public SearchDialog getSearchDialog() {
 		return searchDialog;
 	}

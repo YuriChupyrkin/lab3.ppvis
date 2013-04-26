@@ -1,9 +1,12 @@
 package Server.View;
+import java.util.ResourceBundle;
+
 import javax.swing.*;
 import javax.swing.table.TableModel;
 
 import Server.Controller.ArrowIcon;
 import Server.Controller.SearchDialogListener;
+import Server.Controller.SearchTableListener;
 import Server.Model.PagingModel;
 
 public class SearchDialog extends JDialog{
@@ -22,9 +25,10 @@ public class SearchDialog extends JDialog{
 	private SearchDialogListener searchDialogListener;
 	private JLabel numLabel;
 	public JLabel countLabel;
-	private PagingModel model;
-	JButton upButton;
-	JButton downButton;
+	public PagingModel model;
+	public JButton upButton;
+	public JButton downButton;
+	private SearchTableListener searchTableListener;
 	
 	public enum SearchComboBoxItems{
 		firstIt("номеру дома и фамилии"),
@@ -58,7 +62,11 @@ public class SearchDialog extends JDialog{
 		item2Label = new JLabel("                    фамили€");
 		item1Text = new JTextField();
 		item2Text = new JTextField();
-		butSearch = new JButton("Search");
+		butSearch = new JButton();
+		butSearch.setName("search");
+		ResourceBundle resourceBundle = mainFrame.getAdapter().getData().getResourceBundle();
+		butSearch.setText((String)resourceBundle.getObject(butSearch.getName()));
+		mainFrame.buttonList.add(butSearch);
 		butSearch.setActionCommand("SEARCH");
 		numLabel = new JLabel("Ќайдено: ");
 		countLabel = new JLabel("0");
@@ -96,12 +104,18 @@ public class SearchDialog extends JDialog{
 		
 		upButton = new JButton(new ArrowIcon(ArrowIcon.UP));
 		upButton.setEnabled(false); // starts off at 0, so can't go up
+		upButton.setActionCommand("upButton");
 		downButton = new JButton(new ArrowIcon(ArrowIcon.DOWN));
+		downButton.setActionCommand("downButton");
 		scrollPane.setCorner(ScrollPaneConstants.UPPER_RIGHT_CORNER, upButton);
 		scrollPane.setCorner(ScrollPaneConstants.LOWER_RIGHT_CORNER, downButton);
 		
 		TableModel tmodel = table.getModel();
 		model = (PagingModel) tmodel;
+		
+		searchTableListener = new SearchTableListener(this);
+		upButton.addActionListener(searchTableListener);
+		downButton.addActionListener(searchTableListener);
 			
 		this.add(scrollPane);
 	}

@@ -9,6 +9,7 @@ public class MenuBar extends JMenuBar{
 	private MainFrame mainFrame;
 	JMenu fileMenu;
 	JMenu helpMenu;
+	JMenu actionMenu;
 	JMenuItem about;
 	
 	
@@ -22,6 +23,19 @@ public class MenuBar extends JMenuBar{
 		private final String NAME;
 		private final String COMAND;
 		fileMenuItems(String name, String comand){
+			this.NAME = name;
+			this.COMAND = comand;
+		}
+	}
+	
+	private enum actionMenuItems{
+		add("add", "ADD"),
+		remove("remove", "REMOVE"),
+		search("search", "SEARCH");
+		
+		private final String NAME;
+		private final String COMAND;
+		actionMenuItems(String name, String comand){
 			this.NAME = name;
 			this.COMAND = comand;
 		}
@@ -41,6 +55,10 @@ public class MenuBar extends JMenuBar{
 		helpMenu.setName("helpMenu");
 		helpMenu.setText((String)resourceBundle.getObject(helpMenu.getName()));
 		
+		actionMenu = new JMenu();
+		actionMenu.setName("actionMenu");
+		actionMenu.setText((String)resourceBundle.getObject(actionMenu.getName()));
+		
 		about = new JMenuItem();
 		about.setName("about");
 		about.setText((String)resourceBundle.getObject(about.getName()));
@@ -58,10 +76,22 @@ public class MenuBar extends JMenuBar{
 			menuItem.addActionListener(mainFrame.getMenuListener());
 			fileMenu.add(menuItem);
 		}
+		
+		for(actionMenuItems item: actionMenuItems.values()){
+			JMenuItem menuItem = new JMenuItem();
+			menuItem.setName(item.NAME);
+			menuItem.setText(menuItem.getName());
+			menuItem.setActionCommand(item.COMAND);
+			mainFrame.itemsList.add(menuItem);
+			menuItem.addActionListener(mainFrame.getActionItemsListener());
+			actionMenu.add(menuItem);
+		}
 	
 		mainFrame.menuList.add(fileMenu);	 
 		mainFrame.menuList.add(helpMenu);
+		mainFrame.menuList.add(actionMenu);
 		this.add(fileMenu);
+		this.add(actionMenu);
 		this.add(helpMenu);
 	}
 
