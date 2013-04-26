@@ -59,7 +59,9 @@ public class MainFrame extends JFrame{
 	        {
 	            // привинтить сокет на локалхост, порт 3128
 	            ServerSocket server = new ServerSocket(3128, 0,
-	                    InetAddress.getByName("localhost"));  
+	                    InetAddress.getByName("localhost")); 
+	           /* ServerSocket server = new ServerSocket(3128, 0,
+	                    InetAddress.getByName("192.168.1.16"));  */
 
 	            // слушаем порт
 	            while(true)
