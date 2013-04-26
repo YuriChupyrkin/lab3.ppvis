@@ -57,6 +57,10 @@ public class SampleServer extends Thread
             {
             	sendStudList();
             } 
+            else if(inList.get(0).equals("remove"))
+            {
+            	removeEl();
+            } 
 
            // SMF.SMP.table.revalidate();
            // SMF.SMP.table.repaint();
@@ -99,6 +103,12 @@ public class SampleServer extends Thread
     	catch(Exception e){
     		System.out.println("SendStudList: ERROR");
     	}
+    }
+    
+    public void removeEl(){
+    	LanRemove lanRemove = new LanRemove(mainFrame);
+    	lanRemove.removeEl(inList.get(1), inList.get(2), inList.get(3));
+    	sendStudList();
     }
     
 }
