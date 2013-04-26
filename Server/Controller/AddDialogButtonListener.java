@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.*;
 
 import Server.View.AddDialog;
+import Server.View.MainPanel;
 
 public class AddDialogButtonListener extends AbstractAction{
 
@@ -31,9 +32,10 @@ public class AddDialogButtonListener extends AbstractAction{
 						addDialog.getStreetText().getText(), addDialog.getHouseText().getText(),
 						addDialog.getHousingText().getText(), addDialog.getFlatText().getText());
 				addDialog.setVisible(false);
-				addDialog.getMainFrame().getMainPanel().getTable().revalidate();
-				addDialog.getMainFrame().getMainPanel().getTable().repaint();				
-				addDialog.getMainFrame().getMainPanel().repaint();
+				MainPanel mainPanel = addDialog.getMainFrame().getMainPanel();
+				mainPanel.getTable().revalidate();
+				mainPanel.getTable().repaint();				
+				mainPanel.repaint();
 			}
 			else{
 				JOptionPane.showMessageDialog(addDialog.getMainFrame(), "Незаполнено обязательное поле!");

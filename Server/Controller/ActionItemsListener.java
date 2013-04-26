@@ -6,6 +6,8 @@ import javax.swing.AbstractAction;
 
 import Server.View.AddDialog;
 import Server.View.MainFrame;
+import Server.View.RemoveDialog;
+import Server.View.SearchDialog;
 
 public class ActionItemsListener extends AbstractAction{
 
@@ -27,15 +29,15 @@ public class ActionItemsListener extends AbstractAction{
 			addDialog.runAddDialog();
 		}
 		else if(comand.equals("REMOVE")){
-		/*	RemoveDialog removeDialog = new RemoveDialog(mainFrame);
-			removeDialog.runRemoveDialog(); */
+			RemoveDialog removeDialog = new RemoveDialog(mainFrame);
+			removeDialog.runRemoveDialog(); 
 		}
 		else if(comand.equals("SEARCH")){
-		/*	SearchDialog searchDialog = new SearchDialog(mainFrame);
+			SearchDialog searchDialog = new SearchDialog(mainFrame);
 			searchDialog.getMainFrame().getAdapter().getData().searchList.clear();
 			searchDialog.getTable().revalidate();
 			searchDialog.getTable().repaint();
-			searchDialog.runSearchDialog(); */
+			searchDialog.runSearchDialog(); 
 		}
 		
 	}
