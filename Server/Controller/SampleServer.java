@@ -61,9 +61,10 @@ public class SampleServer extends Thread
             {
             	removeEl();
             } 
-
-           // SMF.SMP.table.revalidate();
-           // SMF.SMP.table.repaint();
+            else if(inList.get(0).equals("search"))
+            {
+            	searchEl();
+            } 
             
             socket.close();
         }
@@ -109,6 +110,32 @@ public class SampleServer extends Thread
     	LanRemove lanRemove = new LanRemove(mainFrame);
     	lanRemove.removeEl(inList.get(1), inList.get(2), inList.get(3));
     	sendStudList();
+    }
+    
+    public void searchEl(){
+    	LanSearch lanSearch = new LanSearch(mainFrame);
+    	lanSearch.searchEl(inList.get(1), inList.get(2), inList.get(3));
+    	
+    	try{
+	    	Data data = mainFrame.getAdapter().getData();
+	    	List<String>outList = new ArrayList<String>();
+	    	for(Student stud: data.searchList){
+	    		outList.add(stud.getFio());
+	    		outList.add(stud.getCountry());
+	    		outList.add(stud.getProvince());
+	    		outList.add(stud.getCity());
+	    		outList.add(stud.getStreet());
+	    		outList.add(stud.getHouse());
+	    		outList.add(stud.getHousing());
+	    		outList.add(stud.getFlat());
+	    	}
+	    	ObjectOutputStream objectOutput = new ObjectOutputStream(socket.getOutputStream());
+	    	objectOutput.writeObject(outList);
+    	}
+    	catch(Exception e){
+    		System.out.println("SendStudList: ERROR");
+    	}
+    	
     }
     
 }
