@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 
 import javax.swing.*;
 
+import Client.Model.Data;
 import Client.View.RemoveDialog.ComboBoxItems;
 import Client.View.SearchDialog;
 import Client.View.SearchDialog.SearchComboBoxItems;
@@ -41,6 +42,8 @@ public class SearchDialogListener extends AbstractAction{
 		else if(comand.equals("SEARCH")){
 			searchElement = new SearchElement(this);
 			searchElement.searchEl();
+			Data data = searchDialog.getMainFrame().getAdapter().getData();
+			searchDialog.countLabel.setText(String.valueOf(data.searchList.size()));
 			searchDialog.getTable().revalidate();
 			searchDialog.getTable().repaint();
 			searchDialog.getMainFrame().getMainPanel().repaint();
